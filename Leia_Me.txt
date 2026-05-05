@@ -1,0 +1,61 @@
+Projeto: Simulação Cirúrgica em Realidade Mista Aluno: 
+Arthur Augusto Eich 
+Computação Gráfica 
+Plataforma: Meta Quest 3S (Android) 
+Engine: Unity 3D (URP)
+
+1. Resumo da Experiência
+
+Aplicação desenvolvida para treinamento médico imersivo, utilizando recursos de Realidade Virtual (VR) e 
+Realidade Mista (MR). O usuário inicia em um Lobby de treinamento e transita para um Centro Cirúrgico, 
+onde realiza procedimentos de incisão e transplante cardíaco com feedback visual e sonoro.
+
+2. Destaques Técnicos Implementados
+
+Interação Híbrida: O usuário pode alternar em tempo real entre o ambiente virtual completo (VR) e a sala real (MR).
+
+Shader Graph Personalizado: Desenvolvimento de um shader holográfico para a pele do paciente, com controle de 
+opacidade via script (AnatomyController), permitindo o efeito de "Raio-X" gradual.
+
+Física de Incisão: Sistema de colisão preciso (OnTrigger) que detecta o contato da ferramenta "Bisturi" com a 
+malha da pele, ativando a dissolução do tecido.
+
+Sistema de Transplante (Socket Interactor): Mecânica de encaixe magnético com filtragem de Interaction Layers ("Organs"). 
+O tórax aceita apenas o Coração, rejeitando ferramentas incorretas.
+
+Áudio Espacial e Reativo: Implementação de máquina de estados de áudio. O monitor cardíaco altera o som 
+entre "Ritmo Normal" e "Parada Cardíaca" (Flatline) automaticamente baseando-se na presença do órgão no socket.
+
+Otimização Mobile: Projeto limpo utilizando compressão de texturas ASTC e Stripping de assets não utilizados para 
+performance estável no Quest 3S.
+
+3. Guia de Controles (Meta Quest 3S)
+
+Mover-se: Analógico Esquerdo (Teleporte ou Movimento Contínuo).
+
+Girar: Analógico Direito.
+
+Pegar Objetos: Botão Grip (Lateral) - Configurado como Toggle (Aperta uma vez para pegar, aperta novamente para soltar).
+
+Interagir com UI: Raio Laser + Gatilho (Trigger).
+
+Resetar Simulação: Botão virtual "Resetar Corpo" localizado na mesa de cirurgia.
+
+4. Passo a Passo da Simulação
+
+Lobby: O usuário inicia na sala de espera. Dirija-se ao Portal.
+
+Clínica: Ao atravessar o portal, o ambiente muda para o centro cirúrgico.
+
+Incisão: Pegue o Bisturi na mesa. Encoste a ponta no peito do paciente para realizar a incisão e revelar os órgãos.
+
+Remoção: Pegue o Coração (antigo) de dentro do peito e remova-o. Note a mudança no som do monitor cardíaco.
+
+Transplante: Pegue o Coração Novo e aproxime do peito. Solte-o quando visualizar o holograma de encaixe. O som do 
+monitor voltará ao normal.
+
+5. Observação sobre Desenvolvimento
+
+O projeto foi desenvolvido utilizando o XR Device Simulator. Embora todas as mecânicas (Colliders, Layers, Scripts) 
+tenham sido testadas exaustivamente no simulador, ajustes finos de altura da mesa (Floor Offset) podem variar 
+ligeiramente dependendo da calibração do guardião do dispositivo físico.
